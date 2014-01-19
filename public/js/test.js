@@ -53,6 +53,8 @@
       body0.currentTheta = constants.initialTheta;
       lthigh0.transform.baseVal.appendItem(transformObject); 
       lthigh0.currentTheta = constants.initialTheta;
+      rthigh0.transform.baseVal.appendItem(transformObject6); 
+      rthigh0.currentTheta = constants.initialTheta;
 
       lfoot0.currentTheta += 45;
       lfoot0.transform.baseVal.getItem(0).setRotate(lfoot0.currentTheta, 0, 0);
@@ -63,8 +65,14 @@
       lhand0.currentTheta += 45;
       lhand0.transform.baseVal.getItem(0).setRotate(lhand0.currentTheta, 0, 75);
       
+      rhand0.currentTheta -= 45;
+      rhand0.transform.baseVal.getItem(0).setRotate(rhand0.currentTheta, 0, 75);
+      
       lthigh0.currentTheta += 30;
       lthigh0.transform.baseVal.getItem(0).setRotate(lthigh0.currentTheta, 0, 150);
+      
+      rthigh0.currentTheta -= 30;
+      rthigh0.transform.baseVal.getItem(0).setRotate(rthigh0.currentTheta, 0, 150);
 
       //requestAnimationFrameID = window.requestAnimationFrame(rotate_lthigh);
       //requestAnimationFrameID = window.requestAnimationFrame(rotate_lfoot);
@@ -104,29 +112,46 @@
       if(rfoot0.currentTheta > 45 || rfoot0.currentTheta < -45) constants.thetaDelta*=-1;
       requestAnimationFrameID = window.requestAnimationFrame(doLeg); 
     }
+    
+    function bend() {
+    	
+    
+    }
 
     function move_body_h() {
       if(head0.x.baseVal.value > MAX_X || head0.x.baseVal.value < -1*MAX_X) velocity *= -1;   
       head0.x.baseVal.value += s2d(velocity)
-      body0.x.baseVal.value += s2d(velocity)
+      //body0.x.baseVal.value += s2d(velocity)
       //lhand0.x.baseVal.value += s2d(velocity)
-      rhand0.x.baseVal.value += s2d(velocity)
-      rthigh0.x.baseVal.value += s2d(velocity)
+      //rhand0.x.baseVal.value += s2d(velocity)
+      //rthigh0.x.baseVal.value += s2d(velocity)
       //lthigh0.x.baseVal.value += s2d(velocity)
-
+      
+      //try to control the body
+      body0.x.baseVal.value += s2d(velocity)*cos(body0.currentTheta);
+      body0.y.baseVal.value += s2d(velocity)*(-sin(body0.currentTheta));
+      
+      //try to control the feet
       lfoot0.x.baseVal.value += s2d(velocity)*cos(lfoot0.currentTheta);
       lfoot0.y.baseVal.value += s2d(velocity)*(-sin(lfoot0.currentTheta));
       
-      //try to control the lhand
+      rfoot0.x.baseVal.value += s2d(velocity)*cos(rfoot0.currentTheta);
+      rfoot0.y.baseVal.value += s2d(velocity)*(-sin(rfoot0.currentTheta));
+      
+      //try to control the hands
       lhand0.x.baseVal.value += s2d(velocity)*cos(lhand0.currentTheta);
       lhand0.y.baseVal.value += s2d(velocity)*(-sin(lhand0.currentTheta));
       
-      //try to control the lthigh
+      rhand0.x.baseVal.value += s2d(velocity)*cos(rhand0.currentTheta);
+      rhand0.y.baseVal.value += s2d(velocity)*(-sin(rhand0.currentTheta));
+      
+      //try to control the thighs
       lthigh0.x.baseVal.value += s2d(velocity)*cos(lthigh0.currentTheta);
       lthigh0.y.baseVal.value += s2d(velocity)*(-sin(lthigh0.currentTheta));
       
-      rfoot0.x.baseVal.value += s2d(velocity)*cos(Math.abs(rfoot0.currentTheta));
-      rfoot0.y.baseVal.value += s2d(velocity)*sin(Math.abs(rfoot0.currentTheta));
+      rthigh0.x.baseVal.value += s2d(velocity)*cos(rthigh0.currentTheta);
+      rthigh0.y.baseVal.value += s2d(velocity)*(-sin(rthigh0.currentTheta));
+      
       requestAnimationFrameID = window.requestAnimationFrame(move_body_h); 
     }
 
@@ -155,7 +180,6 @@
       lfoot0.currentTheta += constants.thetaDelta;
       requestAnimationFrameID = window.requestAnimationFrame(rotate_lfoot);
     }
-
 
     function end_lthigh(theta, len, mx, my){
         var cord = new Array();
