@@ -59,6 +59,12 @@
 
       rfoot0.currentTheta -= 45;
       rfoot0.transform.baseVal.getItem(0).setRotate(rfoot0.currentTheta, 0, 0);
+      
+      lhand0.currentTheta += 45;
+      lhand0.transform.baseVal.getItem(0).setRotate(lhand0.currentTheta, 0, 75);
+      
+      lthigh0.currentTheta += 30;
+      lthigh0.transform.baseVal.getItem(0).setRotate(lthigh0.currentTheta, 0, 150);
 
       //requestAnimationFrameID = window.requestAnimationFrame(rotate_lthigh);
       //requestAnimationFrameID = window.requestAnimationFrame(rotate_lfoot);
@@ -103,14 +109,22 @@
       if(head0.x.baseVal.value > MAX_X || head0.x.baseVal.value < -1*MAX_X) velocity *= -1;   
       head0.x.baseVal.value += s2d(velocity)
       body0.x.baseVal.value += s2d(velocity)
-      lhand0.x.baseVal.value += s2d(velocity)
+      //lhand0.x.baseVal.value += s2d(velocity)
       rhand0.x.baseVal.value += s2d(velocity)
       rthigh0.x.baseVal.value += s2d(velocity)
-      lthigh0.x.baseVal.value += s2d(velocity)
+      //lthigh0.x.baseVal.value += s2d(velocity)
 
-      lfoot0.x.baseVal.value += s2d(velocity)*cos(Math.abs(lfoot0.currentTheta));
-      lfoot0.y.baseVal.value += s2d(velocity)*sin(Math.abs(lfoot0.currentTheta));
-
+      lfoot0.x.baseVal.value += s2d(velocity)*cos(lfoot0.currentTheta);
+      lfoot0.y.baseVal.value += s2d(velocity)*(-sin(lfoot0.currentTheta));
+      
+      //try to control the lhand
+      lhand0.x.baseVal.value += s2d(velocity)*cos(lhand0.currentTheta);
+      lhand0.y.baseVal.value += s2d(velocity)*(-sin(lhand0.currentTheta));
+      
+      //try to control the lthigh
+      lthigh0.x.baseVal.value += s2d(velocity)*cos(lthigh0.currentTheta);
+      lthigh0.y.baseVal.value += s2d(velocity)*(-sin(lthigh0.currentTheta));
+      
       rfoot0.x.baseVal.value += s2d(velocity)*cos(Math.abs(rfoot0.currentTheta));
       rfoot0.y.baseVal.value += s2d(velocity)*sin(Math.abs(rfoot0.currentTheta));
       requestAnimationFrameID = window.requestAnimationFrame(move_body_h); 
@@ -163,6 +177,10 @@
         return Math.sin(theta_to_radian(theta));
     }
 
+	function tan(theta){
+        return Math.tan(theta_to_radian(theta));
+    }
+    
     function s2d(s){
       return (s / 1000) * constants.delay;
     }
