@@ -12,7 +12,8 @@
     var svgElement;
     var requestAnimationFrameID; // Contains the requestAnimationFrame() object.
     var velocity = 50;
-    var direction = 1;
+    var bendDirection = 1;
+    var flyDirection = 1;
     var MAX_X = 500;
     var MAX_Y = 320;
     function initConstants()
@@ -82,50 +83,51 @@
       //requestAnimationFrameID = window.requestAnimationFrame(rotate_lthigh);
       //requestAnimationFrameID = window.requestAnimationFrame(rotate_lfoot);
       //requestAnimationFrameID = window.requestAnimationFrame(move_body_h);
-      requestAnimationFrameID = window.requestAnimationFrame(bend);
+      //requestAnimationFrameID = window.requestAnimationFrame(bend);
+      requestAnimationFrameID = window.requestAnimationFrame(fly);
 
     }
 
     function bend() {
-    	rotate_body(1, 0, 150, 90, 0);
-    	rotate_hands(1, 0, 150, 90, 0);
-    	rotate_head(1, 0, 150, 90, 0);
-    	if(body0.currentTheta == 0)
+    	if(body0.currentTheta > 90)
+    		bendDirection = -1;
+    	rotate_body(1, 0, 150, bendDirection)
+    	rotate_lhand(1, 0, 150, bendDirection);
+    	rotate_rhand(1, 0, 150, bendDirection);
+    	rotate_head(1, 0, 150, bendDirection);
+    	if(body0.currentTheta == 0){
+    		bendDirection = 1;
     		return;
-    	requestAnimationFrameID = window.requestAnimationFrame(bend);
-    	
+    	}
+    	requestAnimationFrameID = window.requestAnimationFrame(bend);	
     }
     
-    function rotate_body(theta, cx, cy, upperbound, lowerbound) {
+    function fly() {
+    	if(lhand0.currentTheta > 80)
+    		flyDirection = -1;
+    	if(lhand0.currentTheta < -20)
+    		flyDirection = 1;
+    	rotate_lhand(1, 0, 75, flyDirection);
+    	rotate_rhand(1, 0, 75, -flyDirection);
+    	requestAnimationFrameID = window.requestAnimationFrame(fly);
+    }
     
-    	if(body0.currentTheta > upperbound)
-    		direction = -1;
-    	if(body0.currentTheta < lowerbound)
-    		direction = 1;
-
+    function rotate_body(theta, cx, cy, direction) {
     	body0.currentTheta += direction*theta;
     	body0.transform.baseVal.getItem(0).setRotate(body0.currentTheta, cx, cy);
     }
     
-    function rotate_hands(theta, cx, cy, upperbound, lowerbound) {
-    	if(body0.currentTheta > upperbound)
-    		direction = -1;
-    	if(body0.currentTheta < lowerbound)
-    		direction = 1;
-    	
+    function rotate_lhand(theta, cx, cy, direction) {	
     	lhand0.currentTheta += direction*theta;
     	lhand0.transform.baseVal.getItem(0).setRotate(lhand0.currentTheta, cx, cy);
-    	
+    }
+    
+    function rotate_rhand(theta, cx, cy, direction) {
     	rhand0.currentTheta += direction*theta;
     	rhand0.transform.baseVal.getItem(0).setRotate(rhand0.currentTheta, cx, cy);
     }
     
-    function rotate_head(theta, cx, cy, upperbound, lowerbound) {
-    	if(body0.currentTheta > upperbound)
-    		direction = -1;
-    	if(body0.currentTheta < lowerbound)
-    		direction = 1;
-    	
+    function rotate_head(theta, cx, cy, direction) {
     	head0.currentTheta += direction*theta;
     	head0.transform.baseVal.getItem(0).setRotate(head0.currentTheta, cx, cy);
     }
