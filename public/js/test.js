@@ -7,9 +7,12 @@
     var transformObject4;
     var transformObject5;
     var transformObject6;
+    var transformObject7;
+    var transformObject8;
     var svgElement;
     var requestAnimationFrameID; // Contains the requestAnimationFrame() object.
     var velocity = 50;
+    var direction = 1;
     var MAX_X = 500;
     var MAX_Y = 320;
     function initConstants()
@@ -24,6 +27,8 @@
       transformObject4 = svgElement.createSVGTransform();
       transformObject5 = svgElement.createSVGTransform();
       transformObject6 = svgElement.createSVGTransform();
+      transformObject7 = svgElement.createSVGTransform();
+      transformObject8 = svgElement.createSVGTransform();
     }
 
     function init() {
@@ -39,7 +44,7 @@
 
       initConstants(); 
 
-      head0.transform.baseVal.appendItem(transformObject); 
+      head0.transform.baseVal.appendItem(transformObject8); 
       head0.currentTheta = constants.initialTheta;
       lfoot0.transform.baseVal.appendItem(transformObject3); 
       lfoot0.currentTheta = constants.initialTheta;
@@ -49,7 +54,7 @@
       rhand0.currentTheta = constants.initialTheta;
       lhand0.transform.baseVal.appendItem(transformObject5); 
       lhand0.currentTheta = constants.initialTheta;
-      body0.transform.baseVal.appendItem(transformObject); 
+      body0.transform.baseVal.appendItem(transformObject7); 
       body0.currentTheta = constants.initialTheta;
       lthigh0.transform.baseVal.appendItem(transformObject); 
       lthigh0.currentTheta = constants.initialTheta;
@@ -62,11 +67,11 @@
       rfoot0.currentTheta -= 45;
       rfoot0.transform.baseVal.getItem(0).setRotate(rfoot0.currentTheta, 0, 0);
       
-      lhand0.currentTheta += 45;
-      lhand0.transform.baseVal.getItem(0).setRotate(lhand0.currentTheta, 0, 75);
+      //lhand0.currentTheta += 45;
+      //lhand0.transform.baseVal.getItem(0).setRotate(lhand0.currentTheta, 0, 75);
       
-      rhand0.currentTheta -= 45;
-      rhand0.transform.baseVal.getItem(0).setRotate(rhand0.currentTheta, 0, 75);
+      //rhand0.currentTheta -= 45;
+      //rhand0.transform.baseVal.getItem(0).setRotate(rhand0.currentTheta, 0, 75);
       
       lthigh0.currentTheta += 30;
       lthigh0.transform.baseVal.getItem(0).setRotate(lthigh0.currentTheta, 0, 150);
@@ -76,7 +81,8 @@
 
       //requestAnimationFrameID = window.requestAnimationFrame(rotate_lthigh);
       //requestAnimationFrameID = window.requestAnimationFrame(rotate_lfoot);
-      requestAnimationFrameID = window.requestAnimationFrame(move_body_h);
+      //requestAnimationFrameID = window.requestAnimationFrame(move_body_h);
+      requestAnimationFrameID = window.requestAnimationFrame(bend);
 
     }
 
@@ -114,8 +120,47 @@
     }
     
     function bend() {
+    	rotate_body(1, 0, 150, 90, 0);
+    	rotate_hands(1, 0, 150, 90, 0);
+    	rotate_head(1, 0, 150, 90, 0);
+    	if(body0.currentTheta == 0)
+    		return;
+    	requestAnimationFrameID = window.requestAnimationFrame(bend);
     	
+    }
     
+    function rotate_body(theta, cx, cy, upperbound, lowerbound) {
+    
+    	if(body0.currentTheta > upperbound)
+    		direction = -1;
+    	if(body0.currentTheta < lowerbound)
+    		direction = 1;
+
+    	body0.currentTheta += direction*theta;
+    	body0.transform.baseVal.getItem(0).setRotate(body0.currentTheta, cx, cy);
+    }
+    
+    function rotate_hands(theta, cx, cy, upperbound, lowerbound) {
+    	if(body0.currentTheta > upperbound)
+    		direction = -1;
+    	if(body0.currentTheta < lowerbound)
+    		direction = 1;
+    	
+    	lhand0.currentTheta += direction*theta;
+    	lhand0.transform.baseVal.getItem(0).setRotate(lhand0.currentTheta, cx, cy);
+    	
+    	rhand0.currentTheta += direction*theta;
+    	rhand0.transform.baseVal.getItem(0).setRotate(rhand0.currentTheta, cx, cy);
+    }
+    
+    function rotate_head(theta, cx, cy, upperbound, lowerbound) {
+    	if(body0.currentTheta > upperbound)
+    		direction = -1;
+    	if(body0.currentTheta < lowerbound)
+    		direction = 1;
+    	
+    	head0.currentTheta += direction*theta;
+    	head0.transform.baseVal.getItem(0).setRotate(head0.currentTheta, cx, cy);
     }
 
     function move_body_h() {
