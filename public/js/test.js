@@ -61,11 +61,11 @@
       rthigh0.transform.baseVal.appendItem(transformObject6); 
       rthigh0.currentTheta = constants.initialTheta;
 
-      lfoot0.currentTheta += 45;
-      lfoot0.transform.baseVal.getItem(0).setRotate(lfoot0.currentTheta, 0, 0);
+      //lfoot0.currentTheta += 45;
+      //lfoot0.transform.baseVal.getItem(0).setRotate(lfoot0.currentTheta, 0, 0);
 
-      rfoot0.currentTheta -= 45;
-      rfoot0.transform.baseVal.getItem(0).setRotate(rfoot0.currentTheta, 0, 0);
+      //rfoot0.currentTheta -= 45;
+      //rfoot0.transform.baseVal.getItem(0).setRotate(rfoot0.currentTheta, 0, 0);
       
       //lhand0.currentTheta += 45;
       //lhand0.transform.baseVal.getItem(0).setRotate(lhand0.currentTheta, 0, 75);
@@ -73,11 +73,11 @@
       //rhand0.currentTheta -= 45;
       //rhand0.transform.baseVal.getItem(0).setRotate(rhand0.currentTheta, 0, 75);
       
-      lthigh0.currentTheta += 30;
-      lthigh0.transform.baseVal.getItem(0).setRotate(lthigh0.currentTheta, 0, 150);
+      //lthigh0.currentTheta += 30;
+      //lthigh0.transform.baseVal.getItem(0).setRotate(lthigh0.currentTheta, 0, 150);
       
-      rthigh0.currentTheta -= 30;
-      rthigh0.transform.baseVal.getItem(0).setRotate(rthigh0.currentTheta, 0, 150);
+      //rthigh0.currentTheta -= 30;
+      //rthigh0.transform.baseVal.getItem(0).setRotate(rthigh0.currentTheta, 0, 150);
 
       //requestAnimationFrameID = window.requestAnimationFrame(rotate_lthigh);
       //requestAnimationFrameID = window.requestAnimationFrame(rotate_lfoot);
@@ -86,39 +86,6 @@
 
     }
 
-    function doAnim() {
-    }
-
-    function doRotate() {
-      ball0.transform.baseVal.getItem(0).setRotate(ball0.currentTheta, 0, 0);
-      ball0.currentTheta += constants.thetaDelta; 
-      requestAnimationFrameID = window.requestAnimationFrame(doRotate); 
-    }
-
-    function doJump() {
-      ball1.vx = 50;
-      ball1.vy = 50;
-      ball1.x.baseVal.value += s2d(ball1.vx);
-      requestAnimationFrameID = window.requestAnimationFrame(doJump); 
-    }
-
-    function doHead() {
-      head0.transform.baseVal.getItem(0).setRotate(head0.currentTheta, 300, 150);
-      head0.currentTheta += constants.thetaDelta; 
-      if(head0.currentTheta > 10 || head0.currentTheta < -10) constants.thetaDelta*=-1;
-      requestAnimationFrameID = window.requestAnimationFrame(doHead); 
-    }
-
-    function doLeg() {
-      rfoot0.transform.baseVal.getItem(0).setRotate(rfoot0.currentTheta, 300, 200);
-      lfoot0.currentTheta += constants.thetaDelta; 
-      lfoot0.transform.baseVal.getItem(0).setRotate(lfoot0.currentTheta, 300, 200);
-      rfoot0.currentTheta += constants.thetaDelta; 
-      if(lfoot0.currentTheta > 15 || lfoot0.currentTheta < -15) constants.thetaDelta*=-1;
-      if(rfoot0.currentTheta > 45 || rfoot0.currentTheta < -45) constants.thetaDelta*=-1;
-      requestAnimationFrameID = window.requestAnimationFrame(doLeg); 
-    }
-    
     function bend() {
     	rotate_body(1, 0, 150, 90, 0);
     	rotate_hands(1, 0, 150, 90, 0);
@@ -166,11 +133,6 @@
     function move_body_h() {
       if(head0.x.baseVal.value > MAX_X || head0.x.baseVal.value < -1*MAX_X) velocity *= -1;   
       head0.x.baseVal.value += s2d(velocity)
-      //body0.x.baseVal.value += s2d(velocity)
-      //lhand0.x.baseVal.value += s2d(velocity)
-      //rhand0.x.baseVal.value += s2d(velocity)
-      //rthigh0.x.baseVal.value += s2d(velocity)
-      //lthigh0.x.baseVal.value += s2d(velocity)
       
       //try to control the body
       body0.x.baseVal.value += s2d(velocity)*cos(body0.currentTheta);
