@@ -1,7 +1,7 @@
 body { color:#444; font-family: Roboto, Arial, sans-serif; font-size: 14px; padding:0; margin:0; }
 div, p, b { padding;0 margin: 0 }
 
-.searchbox {border-radius: 3px;-moz-border-radius: 3px;-webkit-border-radius: 3px; border: 1px solid silver;border-top: 1px solid silver;width: 88%;display: block;padding: 10px 8px; float: left; }
+.searchbox {border-radius: 3px;-moz-border-radius: 3px;-webkit-border-radius: 3px; border: 1px solid silver;border-top: 1px solid silver;width: 78.5%;display: block;padding: 10px 8px; float: left; }
 #chat { width: 19%; float: right; }
 #conversation { border: 0px solid silver; overflow:scroll-y; height:508px; overflow:auto; margin-bottom:10px; }
 #conv { /*margin-right: 10px;*/ margin-top: 10px;   }
@@ -11,11 +11,18 @@ div, p, b { padding;0 margin: 0 }
 
 
 /*Drawing board*/
-#board { width: 69%; border-right: 0px solid silver; float: left; }
+#board { width: 69%; float: left; }
 
 
 
 /*Drawing board*/
 
 
+/*SVG*/
+.head { stroke: black; }
+.body { stroke: black; }
+.hand { stroke: black; }
+.thigh { stroke: black; }
+.foot { stroke: black; }
 
+.axis { stroke: gray; stroke-dasharray: 5 10; }
