@@ -201,13 +201,34 @@
     }
 
     function move_body_v() {
-      if(head0.y.baseVal.value > MAX_Y || head0.y.baseVal.value < -1*MAX_Y) velocity *= -1;    
-      head0.y.baseVal.value += s2d(velocity);
-      body0.y.baseVal.value += s2d(velocity);
-      lhand0.y.baseVal.value += s2d(velocity);
-      rhand0.y.baseVal.value += s2dy(velocity);
-      rfoot0.y.baseVal.value += s2d(velocity);
-      lfoot0.y.baseVal.value += s2d(velocity);
+      if(head0.y.baseVal.value > MAX_Y || head0.y.baseVal.value < -1*MAX_Y) velocity *= -1;
+      head0.y.baseVal.value += s2d(velocity)*(-cos(body0.currentTheta));
+
+      //try to control the body
+      body0.y.baseVal.value += s2d(velocity)*(-cos(body0.currentTheta));
+      body0.x.baseVal.value += s2d(velocity)*(-sin(body0.currentTheta));
+
+      //try to control the feet
+      lfoot0.y.baseVal.value += s2d(velocity)*(-cos(lfoot0.currentTheta));
+      lfoot0.x.baseVal.value += s2d(velocity)*(-sin(lfoot0.currentTheta));
+
+      rfoot0.y.baseVal.value += s2d(velocity)*(-cos(rfoot0.currentTheta));
+      rfoot0.x.baseVal.value += s2d(velocity)*(-sin(rfoot0.currentTheta));
+
+      //try to control the hands
+      lhand0.y.baseVal.value += s2d(velocity)*(-cos(lhand0.currentTheta));
+      lhand0.x.baseVal.value += s2d(velocity)*(-sin(lhand0.currentTheta));
+
+      rhand0.y.baseVal.value += s2d(velocity)*(-cos(rhand0.currentTheta));
+      rhand0.x.baseVal.value += s2d(velocity)*(-sin(rhand0.currentTheta));
+
+      //try to control the thighs
+      lthigh0.y.baseVal.value += s2d(velocity)*(-cos(lthigh0.currentTheta));
+      lthigh0.x.baseVal.value += s2d(velocity)*(-sin(lthigh0.currentTheta));
+
+      rthigh0.y.baseVal.value += s2d(velocity)*(-cos(rthigh0.currentTheta));
+      rthigh0.x.baseVal.value += s2d(velocity)*(-sin(rthigh0.currentTheta));
+
       requestAnimationFrameID = window.requestAnimationFrame(move_body_v);
     }
 
