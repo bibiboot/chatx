@@ -22,60 +22,57 @@
     -->
     <div id="conv">
       <div id="conversation"></div>
-      <input type="button" id="datasend" value="send" />
-      <textarea rows="4" cols="50" id="data" class="searchbox" onfocus="true"></textarea>
     </div>
   </div>
 
   <div id="board">
-    <svg id="svgElement" width="1090px" height="640px" viewBox="0 0 1090 640">
+    <svg id="svgElement" width="1090px" height="600px" viewBox="0 0 1090 600">
       <defs>
         <g id="head">
-          <circle cx="0" cy="0" r="50" style="stroke: black;" /><!--Head-->
+          <circle cx="0" cy="0" r="50" class="head"/><!--Head-->
         </g>
         <g id="body">
-          <line x1="0" y1="0" x2="0" y2="100" style="stroke: black;"/> <!--Body-->        
+          <line x1="0" y1="0" x2="0" y2="100" class="body"/> <!--Body-->        
         </g>
         <g id="lhand">
-          <line x1="0" y1="0" x2="-50" y2="50" style="stroke: black;"/> <!--Hand-->        
+          <line x1="0" y1="0" x2="-50" y2="50" class="hand"/> <!--Hand-->        
         </g>
         <g id="rhand">
-          <line x1="0" y1="0" x2="50" y2="50" style="stroke: black;"/> <!--Hand-->        
+          <line x1="0" y1="0" x2="50" y2="50" class="hand"/> <!--Hand-->        
         </g>
         <g id="lthigh">
-          <line x1="0" y1="0" x2="-50" y2="50" style="stroke: black;"/> <!--Thigh-->         
+          <line x1="0" y1="0" x2="-50" y2="50" class="thigh"/> <!--Thigh-->         
         </g>
         <g id="rthigh">
-          <line x1="0" y1="0" x2="50" y2="50" style="stroke: black;"/> <!--Thigh-->         
+          <line x1="0" y1="0" x2="50" y2="50" class="thigh"/> <!--Thigh-->         
         </g>
         <g id="lfoot">
-          <line x1="0" y1="0" x2="-50" y2="50" style="stroke: black;"/> <!--Foot-->         
+          <line x1="0" y1="0" x2="-50" y2="50" class="foot"/> <!--Foot-->         
         </g>
         <g id="rfoot">
-          <line x1="0" y1="0" x2="50" y2="50" style="stroke: black;"/> <!--Foot-->         
+          <line x1="0" y1="0" x2="50" y2="50" class="foot"/> <!--Foot-->         
         </g>
       </defs>
 
       <rect x="0" y="0" id="arena" width="100%" height="100%" rx="10" ry="10" style="fill: white; stroke: black;" />
-      <g id="coordinateFrame" transform="translate(545, 320)">
+      <g id="coordinateFrame" transform="translate(545, 300)">
         <!--Cordinate system-->
-        <line x1="-545" y1="0" x2="545" y2="0" style="stroke: gray; stroke-dasharray: 5 10;" /> <!--x -axis-->
-        <line x1="0" y1="-320" x2="0" y2="320" style="stroke: gray; stroke-dasharray: 5 10;" /> <!--y-axis-->
-        <circle cx="0" cy="0" r="3" style="fill: gray;" />
+        <line x1="-545" y1="0" x2="545" y2="0" class="axis" /> <!--x -axis-->
+        <line x1="0" y1="-300" x2="0" y2="300" class="axis" /> <!--y-axis-->
+        <!--<circle cx="0" cy="0" r="3" style="fill: gray;" />-->
         <!--Cordinate system-->
 
-        <use id="head0" x="0" y="0" xlink:href="#head" style="fill: white;" />
-        <use id="body0" x="0" y="50" xlink:href="#body" style="fill: white;" />
+        <use id="head0" x="0" y="0" xlink:href="#head" />
+        <use id="body0" x="0" y="50" xlink:href="#body" />
 
-        <use id="lhand0" x="0" y="75" xlink:href="#lhand" style="fill: white;" />
-        <use id="rhand0" x="0" y="75" xlink:href="#rhand" style="fill: white;" />
+        <use id="lhand0" x="0" y="75" xlink:href="#lhand" />
+        <use id="rhand0" x="0" y="75" xlink:href="#rhand" />
 
-        <use id="lthigh0" x="0" y="150" xlink:href="#lthigh" style="fill: white;"/>
-        <use id="rthigh0" x="0" y="150" xlink:href="#rthigh" style="fill: white;"/>
+        <use id="lthigh0" x="0" y="150" xlink:href="#lthigh" />
+        <use id="rthigh0" x="0" y="150" xlink:href="#rthigh" />
 
-        <use id="lfoot0" x="-50" y="200" xlink:href="#lfoot" style="fill: white;"  />
-        <use id="rfoot0" x="50" y="200" xlink:href="#rfoot" style="fill: white;" />
-        <!--<use id="rfoot0" x="0" y="200" xlink:href="#rfoot" style="fill: white;" />-->
+        <use id="lfoot0" x="-50" y="200" xlink:href="#lfoot" />
+        <use id="rfoot0" x="50" y="200" xlink:href="#rfoot" />
         
         <text x="180" y="80" id="word0"></text>
         <text x="-180" y="80" id="word1"></text>
@@ -83,6 +80,12 @@
     </svg>
 
   </div>
+
+  <div id="box">
+      <input type="button" id="datasend" value="send" />
+      <textarea rows="3" cols="50" id="data" class="searchbox" onfocus="true"></textarea>
+  </div>
+
 
 </body>
 </html>
