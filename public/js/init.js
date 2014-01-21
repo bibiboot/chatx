@@ -39,15 +39,9 @@
       var rhand0 = document.getElementById("rhand0");
       var lthigh0 = document.getElementById("lthigh0");
       var rthigh0 = document.getElementById("rthigh0");
-      var lfoot0 = document.getElementById("lfoot0");
-      var rfoot0 = document.getElementById("rfoot0");
 
       head0.transform.baseVal.appendItem(transformObject8);
       head0.currentTheta = constants.initialTheta;
-      lfoot0.transform.baseVal.appendItem(transformObject3);
-      lfoot0.currentTheta = constants.initialTheta;
-      rfoot0.transform.baseVal.appendItem(transformObject2);
-      rfoot0.currentTheta = constants.initialTheta;
       rhand0.transform.baseVal.appendItem(transformObject4);
       rhand0.currentTheta = constants.initialTheta;
       lhand0.transform.baseVal.appendItem(transformObject5);

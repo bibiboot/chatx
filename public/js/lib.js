@@ -22,18 +22,6 @@
         rhand0.transform.baseVal.getItem(0).setRotate(rhand0.currentTheta, cx, cy);
     }
 
-    function rotate_lfoot(theta, cx, cy, direction) {
-        // Rotate left foot
-        lfoot0.currentTheta += direction*theta;
-        lfoot0.transform.baseVal.getItem(0).setRotate(lfoot0.currentTheta, cx, cy);
-    }
-
-    function rotate_rfoot(theta, cx, cy, direction) {
-        // Rotate right foot
-        rfoot0.currentTheta += direction*theta;
-        rfoot0.transform.baseVal.getItem(0).setRotate(rfoot0.currentTheta, cx, cy);
-    }
-
     function rotate_lthigh(theta, cx, cy, direction) {
         // Rotate left thigh
         lthigh0.currentTheta += direction*theta;
@@ -54,13 +42,6 @@
       //try to control the body
       body0.x.baseVal.value += s2d(velocity)*cos(body0.currentTheta);
       body0.y.baseVal.value += s2d(velocity)*(-sin(body0.currentTheta));
-
-      //try to control the feet
-      lfoot0.x.baseVal.value += s2d(velocity)*cos(lfoot0.currentTheta);
-      lfoot0.y.baseVal.value += s2d(velocity)*(-sin(lfoot0.currentTheta));
-
-      rfoot0.x.baseVal.value += s2d(velocity)*cos(rfoot0.currentTheta);
-      rfoot0.y.baseVal.value += s2d(velocity)*(-sin(rfoot0.currentTheta));
 
       //try to control the hands
       lhand0.x.baseVal.value += s2d(velocity)*cos(lhand0.currentTheta);
@@ -87,13 +68,6 @@
       //try to control the body
       body0.y.baseVal.value += s2d(velocity)*(-cos(body0.currentTheta));
       body0.x.baseVal.value += s2d(velocity)*(-sin(body0.currentTheta));
-
-      //try to control the feet
-      lfoot0.y.baseVal.value += s2d(velocity)*(-cos(lfoot0.currentTheta));
-      lfoot0.x.baseVal.value += s2d(velocity)*(-sin(lfoot0.currentTheta));
-
-      rfoot0.y.baseVal.value += s2d(velocity)*(-cos(rfoot0.currentTheta));
-      rfoot0.x.baseVal.value += s2d(velocity)*(-sin(rfoot0.currentTheta));
 
       //try to control the hands
       lhand0.y.baseVal.value += s2d(velocity)*(-cos(lhand0.currentTheta));

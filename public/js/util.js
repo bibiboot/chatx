@@ -27,6 +27,7 @@
     }
 
     function s2d(s){
+      //return 1;
       return (s / 1000) * constants.delay;
     }
 
