@@ -11,12 +11,9 @@
   // listener, whenever the server emits 'updatechat', this updates the chat body
   socket.on('updatechat', function (username, data) {
     $('#data').focus();
-    //var text = document.createTextNode(data);
-    //$('#word1')[0].appendChild(text);
-    if(username == first)
-        $('#word1')[0].textContent = data
-    else
-        $('#word0')[0].textContent = data
+    var t = $("<div class='content'><p id='w1'>"+data+"</p></div>");
+    $("#w1").remove();
+    $('body').append(t);
 
     $('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
     $('#conversation').scrollTop($('#conversation')[0].scrollHeight);
