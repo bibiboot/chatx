@@ -13,6 +13,18 @@
         function tan(theta){
         return Math.tan(theta_to_radian(theta));
     }
+    
+    function atan(value){
+    	return Math.atan(value)*(180/Math.PI);
+    }
+    
+    function pow(base, exponent) {
+    	return Math.pow(base, exponent);
+    }
+    
+    function sqrt(value) {
+    	return Math.sqrt(value);
+    }
 
     function s2d(s){
       return (s / 1000) * constants.delay;
