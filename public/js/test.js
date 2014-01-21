@@ -1,5 +1,8 @@
     "use strict";
     window.addEventListener('load', init, false); 
+    
+    var i=0;
+    var angle=90;
 
     function init() {
 
@@ -8,20 +11,111 @@
 
       //requestAnimationFrameID = window.requestAnimationFrame(move_body_v);
       //requestAnimationFrameID = window.requestAnimationFrame(move_body_h);
-      requestAnimationFrameID = window.requestAnimationFrame(bend);
+      //requestAnimationFrameID = window.requestAnimationFrame(bend);
       //requestAnimationFrameID = window.requestAnimationFrame(fly);
-      requestAnimationFrameID = window.requestAnimationFrame(knee_split);
+      //requestAnimationFrameID = window.requestAnimationFrame(knee_split);
       //requestAnimationFrameID = window.requestAnimationFrame(thigh_split);
       //requestAnimationFrameID = window.requestAnimationFrame(split);
-
+	  //requestAnimationFrameID = window.requestAnimationFrame(sit);
+	  requestAnimationFrameID = window.requestAnimationFrame(onKnees);
+	  //requestAnimationFrameID = window.requestAnimationFrame(propose);
+    }
+    
+    function sit() {
+        if(i<160){
+	    	flyDirection = 1;
+	        var lcx = lfoot0.x.baseVal.value;
+	        var lcy = lfoot0.y. baseVal.value;
+	        var rcx = rfoot0.x.baseVal.value;
+	        var rcy = rfoot0.y. baseVal.value;
+	        rotate_lfoot(-1, lcx, lcy, flyDirection);
+	        rotate_rfoot(1, rcx, rcy, flyDirection);
+        	requestAnimationFrameID = window.requestAnimationFrame(sit);
+        }
+        else if(i<250){
+        	if(velocity>0)
+        		velocity*=-1;
+        	
+			move_body_v_nonrec();
+	        requestAnimationFrameID = window.requestAnimationFrame(sit);
+        }
+        i++;
+    }
+    
+    function onKnees(){
+	    if(i<85){
+		    flyDirection = -1;
+	        var cx = lthigh0.x.baseVal.value;
+	        var cy = lthigh0.y.baseVal.value;
+	        rotate_lfoot(1, cx, cy, flyDirection);
+	        rotate_lthigh(1, cx, cy, flyDirection);
+	        
+			flyDirection = -1;
+	        var lcx = lhand0.x.baseVal.value;
+	        var lcy = lhand0.y. baseVal.value;
+	    	rotate_lhand(1, 0, 75, flyDirection);
+	        
+        	requestAnimationFrameID = window.requestAnimationFrame(onKnees);
+	    }
+	    else if(i<215){
+	    	flyDirection = 1;
+		    var rcx = rfoot0.x.baseVal.value;
+	        var rcy = rfoot0.y.baseVal.value;
+	        rotate_rfoot(1, rcx, rcy, flyDirection);
+	        
+	        var lcx = lfoot0.x.baseVal.value;
+	        var lcy = lfoot0.y.baseVal.value;
+	        rotate_lfoot(1, lcx, lcy, flyDirection);
+	        
+	        requestAnimationFrameID = window.requestAnimationFrame(onKnees);
+	    }
+	    else if(i<218){
+		    bend(90);
+		    requestAnimationFrameID = window.requestAnimationFrame(onKnees);
+	    }
+	    i++;
+    }
+    
+    function propose(){
+    	if(i<45){
+	    	flyDirection = -1;
+		    var cx = lthigh0.x.baseVal.value;
+	        var cy = lthigh0.y.baseVal.value;
+	        rotate_lfoot(1, cx, cy, flyDirection);
+	        rotate_lthigh(1, cx, cy, flyDirection);
+	        
+	        var cx = rthigh0.x.baseVal.value;
+	        var cy = rthigh0.y.baseVal.value;
+	        rotate_rfoot(1, cx, cy, flyDirection);
+	        rotate_rthigh(1, cx, cy, flyDirection);
+	        
+	        requestAnimationFrameID = window.requestAnimationFrame(propose);
+	    }
+	    else if (i<90){
+	        flyDirection = 1;
+		    var rcx = rfoot0.x.baseVal.value;
+	        var rcy = rfoot0.y.baseVal.value;
+	        rotate_rfoot(1, rcx, rcy, flyDirection);
+	        
+	        var lcx = lfoot0.x.baseVal.value;
+	        var lcy = lfoot0.y.baseVal.value;
+	        rotate_lfoot(1, lcx, lcy, flyDirection);
+	        
+	        requestAnimationFrameID = window.requestAnimationFrame(propose);
+	    }
+	    else{
+	    	angle=45;
+		    bow();
+	    }
+	    i++;
     }
 
     function bend() {
-    	if(body0.currentTheta > 90)
+    	if(body0.currentTheta > angle)
     		bendDirection = -1;
         // Mid point
         var cx = lthigh0.x.baseVal.value;
-        var cy = lthigh0.y. baseVal.value;
+        var cy = lthigh0.y.baseVal.value;
     	rotate_body(1, cx, cy, bendDirection)
     	rotate_lhand(1, cx, cy, bendDirection);
     	rotate_rhand(1, cx, cy, bendDirection);
@@ -31,6 +125,21 @@
     		return;
     	}
     	requestAnimationFrameID = window.requestAnimationFrame(bend);	
+    }
+    function bow(){
+    	bendDirection = 1;
+	    if(body0.currentTheta > angle){
+		    return;
+	    }
+        // Mid point
+        var cx = lthigh0.x.baseVal.value;
+        var cy = lthigh0.y.baseVal.value;
+    	rotate_body(1, cx, cy, bendDirection)
+    	rotate_lhand(1, cx, cy, bendDirection);
+    	rotate_rhand(1, cx, cy, bendDirection);
+    	rotate_head(1, cx, cy, bendDirection);
+    	
+    	requestAnimationFrameID = window.requestAnimationFrame(bow);
     }
     
     function fly() {
