@@ -8,9 +8,9 @@
 
       //requestAnimationFrameID = window.requestAnimationFrame(move_body_v);
       //requestAnimationFrameID = window.requestAnimationFrame(move_body_h);
-      requestAnimationFrameID = window.requestAnimationFrame(bend);
+      //requestAnimationFrameID = window.requestAnimationFrame(bend);
       //requestAnimationFrameID = window.requestAnimationFrame(fly);
-      requestAnimationFrameID = window.requestAnimationFrame(knee_split);
+      //requestAnimationFrameID = window.requestAnimationFrame(knee_split);
       //requestAnimationFrameID = window.requestAnimationFrame(thigh_split);
       //requestAnimationFrameID = window.requestAnimationFrame(split);
 

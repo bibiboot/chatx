@@ -62,7 +62,7 @@
         <!--<circle cx="0" cy="0" r="3" style="fill: gray;" />-->
         <!--Cordinate system-->
 
-        <use id="head0" x="0" y="0" xlink:href="#head" />
+        <use id="head0" x="0" y="0" xlink:href="#head" class="head0"/>
         <use id="body0" x="0" y="50" xlink:href="#body" />
 
         <use id="lhand0" x="0" y="75" xlink:href="#lhand" />
@@ -76,15 +76,30 @@
         
         <text x="180" y="80" id="word0"></text>
         <text x="-180" y="80" id="word1"></text>
+
+        <!--Lovely Sun-->     
+        <g id="sun">
+        <polygon points="425,-320  360,-270  435,-275"
+         style="stroke: none; fill: #FFFF00;"/>
+        <polygon points="435,-275  380,-220  470,-240"
+         style="stroke: none; fill: #FFFF00;"/>
+        <polygon points="460,-240  425,-170  505,-210"
+         style="stroke: none; fill: #FFFF00;"/>
+        <polygon points="505,-210  510,-140  545 -200"
+         style="stroke: none; fill: #FFFF00;"/>
+        <path d="M 425 -320
+           A 120 120, 0, 0, 0, 545 -200
+           L 545 -320 Z" fill="#FFD700"/>
+        </g>
       </g>
     </svg>
-
   </div>
-
   <div id="box">
       <input type="button" id="datasend" value="send" />
-      <textarea rows="3" cols="50" id="data" class="searchbox" onfocus="true"></textarea>
+      <textarea rows="3" cols="50" id="data" class="searchbox" onfocus="true" placeholder="type something...."></textarea>
   </div>
+
+
 
 
 </body>
