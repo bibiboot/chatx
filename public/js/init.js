@@ -12,6 +12,7 @@
     var velocity = 50;
     var bendDirection = 1;
     var flyDirection = 1;
+    var walkFlag = 0;
     var MAX_X = 500;
     var MAX_Y = 320;
     function initConstants()
