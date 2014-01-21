@@ -8,12 +8,13 @@
 
       //requestAnimationFrameID = window.requestAnimationFrame(move_body_v);
       //requestAnimationFrameID = window.requestAnimationFrame(move_body_h);
-      requestAnimationFrameID = window.requestAnimationFrame(bend);
+      //requestAnimationFrameID = window.requestAnimationFrame(bend);
       //requestAnimationFrameID = window.requestAnimationFrame(fly);
-      requestAnimationFrameID = window.requestAnimationFrame(knee_split);
+      //requestAnimationFrameID = window.requestAnimationFrame(knee_split);
       //requestAnimationFrameID = window.requestAnimationFrame(thigh_split);
       //requestAnimationFrameID = window.requestAnimationFrame(split);
-
+      requestAnimationFrameID = window.requestAnimationFrame(walk);
+      
     }
 
     function bend() {
@@ -61,24 +62,30 @@
 
     function thigh_split() {
         flyDirection = 1;
-        var cx = lthigh0.x.baseVal.value;
-        var cy = lthigh0.y. baseVal.value;
+        var x = lthigh0.x.baseVal.value;
+        var y = lthigh0.y. baseVal.value;
+        var z = sqrt(pow(x, 2) + pow(y, 2));
+        var deta = atan(y/x);
+        var alpha = lthigh0.currentTheta - deta;
+        var cx = z*sin(alpha);
+        var cy = z*cos(alpha);
         rotate_lthigh(1, cx, cy, flyDirection);
         rotate_rthigh(-1, cx, cy, flyDirection);
         requestAnimationFrameID = window.requestAnimationFrame(thigh_split);
     }
 
 
-    function split() {
+    function split(cx, cy) {
         // Joint of the thighs around which split happens
         flyDirection = 1;
-        var cx = lthigh0.x.baseVal.value;
-        var cy = lthigh0.y. baseVal.value;
+        //var cx = lthigh0.x.baseVal.value;
+        //var cy = lthigh0.y.baseVal.value;
+        
         rotate_lfoot(1, cx, cy, flyDirection);
         rotate_lthigh(1, cx, cy, flyDirection);
         rotate_rfoot(-1, cx, cy, flyDirection);
         rotate_rthigh(-1, cx, cy, flyDirection);
-        requestAnimationFrameID = window.requestAnimationFrame(split);
+        //requestAnimationFrameID = window.requestAnimationFrame(split);
     }
 
     function split_fly() {
@@ -93,3 +100,35 @@
         rotate_rthigh(-1, cx, cy, flyDirection);
         requestAnimationFrameID = window.requestAnimationFrame(split_fly);
     }
+    
+    var flag = 1;
+    function walk() {
+    
+    	var cx = lthigh0.x.baseVal.value;
+        var cy = lthigh0.y.baseVal.value;
+    	if(flag != 1) {
+    		var x = lthigh0.x.baseVal.value;
+        	var y = lthigh0.y.baseVal.value;
+    		var z = sqrt(pow(x, 2) + pow(y, 2));
+        	var deta = atan(y/x);
+        	var alpha = lthigh0.currentTheta - deta;
+        	cx = z*sin(alpha);
+        	cy = z*cos(alpha);
+        }
+        
+    	if(walkFlag < 50) {
+    		split(cx, cy);	
+    		walkFlag ++;
+    	}
+    	else if(walkFlag < 100){
+    	    move_body_h();   	    
+    		walkFlag ++;	
+    	}
+    	else {
+    		walkFlag = 1;
+    		flag = 2;
+    	}
+    		
+    	requestAnimationFrameID = window.requestAnimationFrame(walk);
+    }
+    
