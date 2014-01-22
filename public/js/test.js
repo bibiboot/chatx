@@ -12,7 +12,7 @@
       //requestAnimationFrameID = window.requestAnimationFrame(fly);
       //requestAnimationFrameID = window.requestAnimationFrame(thigh_split);
       //requestAnimationFrameID = window.requestAnimationFrame(split);
-      //requestAnimationFrameID = window.requestAnimationFrame(walk);
+      requestAnimationFrameID = window.requestAnimationFrame(walk);
       
     }
 
