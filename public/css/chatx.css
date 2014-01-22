@@ -65,3 +65,10 @@ div, p, b { padding;0 margin: 0 }
     from, to { border-color: transparent }
     50% { border-color: black }
 }
+
+#logo { position: absolute; margin-left: 20px; margin-top: 20px; }
+#login {position: absolute;left: 39%;top: 22%;margin: auto 0;border-radius: 5px;background: white;height: 49px;z-index: 1001;padding: 31px;box-shadow: 0 5px 15px rgba(0,0,0,0.5); border-radius: 10px;}
+#login input { height: 24px; border-radius: 3px; -moz-border-radius: 3px;-webkit-border-radius: 3px;border: 1px solid #444;border-top: 1px solid #444;padding:10px; }
+
+#cover {position: fixed;top: 0px;left: 0px;height: 100%;width: 100%;background-color: gray;opacity: .7;filter: alpha(opacity=70);z-index: 1000;display: block;}
+#add_but { background: black; color: white; font-weight: bold;text-decoration: none;padding: 19px;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;}
