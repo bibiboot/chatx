@@ -1,11 +1,17 @@
+  var fname;
+  var socket;
+  function add_user(){
+    fname = $('#uname').value 
+    //socket = io.connect('http://localhost:8080');
+    $('#cover').css('display', 'none');
+    $('#login').css('display', 'none');
+  }
   var socket = io.connect('http://localhost:8080');
-  var first ;
-  var second ;
 
   // on connection to server, ask for user's name with an anonymous callback
   socket.on('connect', function(){
     // call the server-side function 'adduser' and send one parameter (value of prompt)
-    socket.emit('adduser', prompt("What's your name?"));
+    socket.emit('adduser', fname);
   });
 
   // listener, whenever the server emits 'updatechat', this updates the chat body
@@ -24,10 +30,6 @@
     //$('#users').empty();
     $.each(data, function(key, value) {
       //$('#users').append('<div>' + key + '</div>');
-      if(first==undefined)
-          first = key;
-      else
-          second = key;
     });
   });
 
