@@ -19,10 +19,6 @@
         
 //        requestAnimationFrameID = window.requestAnimationFrame(suck);
 //        requestAnimationFrameID = window.requestAnimationFrame(love);
-//        requestAnimationFrameID = window.requestAnimationFrame(lol);
-//        requestAnimationFrameID = window.requestAnimationFrame(wicked);
-//        requestAnimationFrameID = window.requestAnimationFrame(sad);
-//        requestAnimationFrameID = window.requestAnimationFrame(rain);
     }
 
     function bend() {
@@ -53,6 +49,7 @@
         var rcy = rhand0.y. baseVal.value;
     	rotate_lhand(1, 0, 75, flyDirection);
     	rotate_rhand(1, 0, 75, -flyDirection);
+    	requestAnimationFrameID = window.requestAnimationFrame(fly);
     }
 
     function thigh_split() {
@@ -164,7 +161,6 @@
             lean();
             shake();
         }
-        console.log(flag);
         
         requestAnimationFrameID = window.requestAnimationFrame(fuck);
     }
@@ -228,108 +224,4 @@
         heart0.transform.baseVal.getItem(0).setScale(scale_para,scale_para);
         scale_para+=0.05;
         requestAnimationFrameID = window.requestAnimationFrame(love);
-    }
-
-    // rtong2
-    function wicked(){
-        if(scale_para<20){
-            mouth0.transform.baseVal.getItem(0).setSkewX(scale_para);
-            mouth0.transform.baseVal.getItem(0).setSkewY(scale_para);
-            scale_para+=0.5;
-        } else {
-            scale_para=-scale_para;
-        }
-        console.log(scale_para);
-        requestAnimationFrameID = window.requestAnimationFrame(wicked);
-    }
-
-    // rtong2
-    var flag_lol=1;
-    var scale_para=0.9
-    function lol(){
-        if(scale_para<1 && scale_para>0.8){
-            if(flag_lol==1)
-                scale_para+=0.05;
-            else if (flag_lol==-1)
-                scale_para-=0.05;
-            mouth0.transform.baseVal.getItem(0).setScale(scale_para,scale_para);
-        } else {
-            flag_lol=-flag_lol;
-            scale_para=scale_para+0.05*flag_lol;
-        }
-        fly();
-        requestAnimationFrameID = window.requestAnimationFrame(lol);
-    }
-
-    // rtong2
-    var theta=0;
-    var drop=0;
-    var a=0.1;
-    function sad(){
-        if(theta<6){
-            mouth0.currentTheta += theta;
-            mouth0.transform.baseVal.getItem(0).setRotate(mouth0.currentTheta, 0, 25);
-            theta+=0.1;
-        }
-        if(drop>0)
-            tear0.y.baseVal.value+=velocity/100+a;
-        if(drop>2)
-            tear1.y.baseVal.value+=velocity/100+a;
-        if(drop>4)
-            tear2.y.baseVal.value+=velocity/100+a;
-        if (drop>6)
-            tear3.y.baseVal.value+=velocity/100+a;
-        if (drop>8){
-            drop=0;
-            a=0.1;
-            tear0.y.baseVal.value=0;
-            tear1.y.baseVal.value=0;
-            tear2.y.baseVal.value=0;
-            tear3.y.baseVal.value=0;
-        }
-        a+=0.1;
-        drop+=0.1;
-        requestAnimationFrameID = window.requestAnimationFrame(sad);
-    }
-
-    // rtong2
-    var a1=0.1;
-    var a2=0.1;
-    var a3=0.1;
-    var a4=0.1;
-    var a5=0.1;
-    function rain(){
-            rain1.y.baseVal.value+=velocity/100+a1*0.1;
-            rain2.y.baseVal.value+=velocity/100+a2*0.2;
-            rain3.y.baseVal.value+=velocity/100+a3*0.4;
-            rain4.y.baseVal.value+=velocity/100+a4*0.8;
-            rain5.y.baseVal.value+=velocity/100+a5*1.6;
-//            cloud0.x.baseVal.value+=velocity/100+a;
-        
-        if(rain1.y.baseVal.value>400){
-            a1=0;
-            rain1.y.baseVal.value=-400;
-        }
-        if(rain2.y.baseVal.value>400){
-            a2=0;
-            rain2.y.baseVal.value=-400;
-        }
-        if(rain3.y.baseVal.value>400){
-            a3=0;
-            rain3.y.baseVal.value=-400;
-        }
-        if(rain4.y.baseVal.value>400){
-            a4=0;
-            rain4.y.baseVal.value=-400;
-        }
-        if(rain5.y.baseVal.value>400){
-            a5=0;
-            rain5.y.baseVal.value=-400;
-        }
-        a1+=0.03;
-        a2+=0.03;
-        a3+=0.03;
-        a4+=0.03;
-        a5+=0.03;
-        requestAnimationFrameID = window.requestAnimationFrame(rain);
     }

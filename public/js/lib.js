@@ -83,5 +83,5 @@
       rthigh0.y.baseVal.value += s2d(velocity)*(-cos(rthigh0.currentTheta));
       rthigh0.x.baseVal.value += s2d(velocity)*(-sin(rthigh0.currentTheta));
 
-      requestAnimationFrameID = window.requestAnimationFrame(move_body_v);
+      //requestAnimationFrameID = window.requestAnimationFrame(move_body_v);
     }
